@@ -12,11 +12,11 @@
     .paila, .canastas-prediseñadas { flex: 1 1 300px; }
     label { display: block; margin-bottom: 8px; }
     .canasta { border: 1px solid #ccc; border-radius: 8px; padding: 10px; margin-bottom: 15px; }
-    .canasta label { font-weight: bold; }
+    .canasta label { font-weight: bold; display: flex; align-items: center; gap: 5px; }
     button { background: #ffae00; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; border-radius: 5px; }
     #total { font-size: 1.3em; margin: 15px 0; text-align: center; color: #2E8B57; }
     .item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-    .cantidad { width: 55px; text-align: center; }
+    .cantidad, .cantidad-canasta { width: 50px; text-align: center; }
     .precio { color: #2E8B57; font-weight: bold; }
     .productos h3 { margin-top: 10px; }
   </style>
@@ -97,94 +97,106 @@
   </div>
 </div>
 
-    <div id="total">Total: $0.00</div>
-    <div style="text-align:center;">
-      <button id="whatsapp">Enviar pedido por WhatsApp</button>
-    </div>
-  </div>
+<div id="total">Total: $0.00</div>
+<div style="text-align:center;">
+  <button id="whatsapp">Enviar pedido por WhatsApp</button>
+</div>
 
-  <script>
-    const pailas = document.getElementsByName('paila');
-    const productos = document.querySelectorAll('.producto');
-    const cantidades = document.querySelectorAll('.cantidad');
-    const canastasCheck = document.querySelectorAll('.canasta-check');
-    const cantidadesCanasta = document.querySelectorAll('.cantidad-canasta');
-    const totalDiv = document.getElementById('total');
-    const whatsappBtn = document.getElementById('whatsapp');
+<script>
+  const pailas = document.getElementsByName('paila');
+  const productos = document.querySelectorAll('.producto');
+  const cantidades = document.querySelectorAll('.cantidad');
+  const canastasCheck = document.querySelectorAll('.canasta-check');
+  const cantidadesCanasta = document.querySelectorAll('.cantidad-canasta');
+  const totalDiv = document.getElementById('total');
+  const whatsappBtn = document.getElementById('whatsapp');
 
-    // Productos básicos
-    productos.forEach((checkbox, index) => {
-      const cantidad = cantidades[index];
-      checkbox.addEventListener('change', () => {
-        cantidad.disabled = !checkbox.checked;
-        if (!checkbox.checked) cantidad.value = 1;
-        calcularTotal();
-      });
-      cantidad.addEventListener('input', calcularTotal);
+  // Productos básicos
+  productos.forEach((checkbox, index) => {
+    const cantidad = cantidades[index];
+    checkbox.addEventListener('change', () => {
+      cantidad.disabled = !checkbox.checked;
+      if (!checkbox.checked) cantidad.value = 1;
+      calcularTotal();
     });
+    cantidad.addEventListener('input', calcularTotal);
+  });
 
-    // Canastas prediseñadas
-    canastasCheck.forEach((check, index) => {
-      const cantidad = cantidadesCanasta[index];
-      check.addEventListener('change', () => {
-        cantidad.disabled = !check.checked;
-        if (!check.checked) cantidad.value = 1;
-        calcularTotal();
-      });
-      cantidad.addEventListener('input', calcularTotal);
-    });
+  // Canastas prediseñadas
+  canastasCheck.forEach((check, index) => {
+    const cantidad = cantidadesCanasta[index];
+    check.addEventListener('change', () => {
+      cantidad.disabled = !check.checked;
+      if (!check.checked) cantidad.value = 1;
 
-    // Pailas
-    pailas.forEach(p => p.addEventListener('change', calcularTotal));
-
-    function calcularTotal() {
-      let total = 0;
-      let mensaje = "🛒 *_Hola Mini Super Toñita, quiero compartir mi pedido:_*%0A";
-
-      // Paila seleccionada
-      for (let p of pailas) {
-        if (p.checked) {
-          total += parseFloat(p.value);
-          mensaje += `- ${p.parentElement.textContent.trim()}%0A`;
-        }
+      // Deselecciona pailas si se selecciona cualquier canasta
+      if (check.checked) {
+        pailas.forEach(p => p.checked = false);
       }
 
-      // Canastas seleccionadas
-      canastasCheck.forEach((c, i) => {
-        if (c.checked) {
-          const cantidad = Math.max(1, parseInt(cantidadesCanasta[i].value));
-          const precio = parseFloat(c.value);
-          total += precio * cantidad;
-          mensaje += `- ${cantidad} x ${c.dataset.nombre} ($${(precio * cantidad).toFixed(2)})%0A`;
-        }
-      });
+      calcularTotal();
+    });
+    cantidad.addEventListener('input', calcularTotal);
+  });
 
-      // Productos seleccionados
-      productos.forEach((prod, i) => {
-        if (prod.checked) {
-          const cantidad = Math.max(1, parseInt(cantidades[i].value));
-          const precio = parseFloat(prod.value);
-          total += precio * cantidad;
-          mensaje += `- ${cantidad} x ${prod.dataset.nombre} ($${(precio * cantidad).toFixed(2)})%0A`;
-        }
+  // Pailas
+  pailas.forEach(p => {
+    p.addEventListener('change', () => {
+      // Deselecciona canastas si se selecciona paila
+      canastasCheck.forEach(c => {
+        c.checked = false;
+        cantidadesCanasta.forEach(cant => cant.value = 1);
+        cant.disabled = true;
       });
+      calcularTotal();
+    });
+  });
 
-      totalDiv.textContent = "Total: $" + total.toFixed(2);
-      mensaje += `%0A💰 *Total:* $${total.toFixed(2)}`;
-      return mensaje;
+  function calcularTotal() {
+    let total = 0;
+    let mensaje = "🛒 *_Hola Mini Super Toñita, quiero compartir mi pedido:_*%0A";
+
+    // Paila seleccionada
+    for (let p of pailas) {
+      if (p.checked) {
+        total += parseFloat(p.value);
+        mensaje += `- ${p.parentElement.textContent.trim()}%0A`;
+      }
     }
 
-    whatsappBtn.addEventListener('click', () => {
-      const mensaje = calcularTotal();
-      const numero = "50370092996";
-      const url = `https://wa.me/${numero}?text=${mensaje}`;
-      window.open(url, "_blank");
+    // Canastas seleccionadas
+    canastasCheck.forEach((c, i) => {
+      if (c.checked) {
+        const cantidad = Math.max(1, parseInt(cantidadesCanasta[i].value));
+        const precio = parseFloat(c.value);
+        total += precio * cantidad;
+        mensaje += `- ${cantidad} x ${c.dataset.nombre} ($${(precio * cantidad).toFixed(2)})%0A`;
+      }
     });
 
-    calcularTotal();
-  </script>
+    // Productos seleccionados
+    productos.forEach((prod, i) => {
+      if (prod.checked) {
+        const cantidad = Math.max(1, parseInt(cantidades[i].value));
+        const precio = parseFloat(prod.value);
+        total += precio * cantidad;
+        mensaje += `- ${cantidad} x ${prod.dataset.nombre} ($${(precio * cantidad).toFixed(2)})%0A`;
+      }
+    });
+
+    totalDiv.textContent = "Total: $" + total.toFixed(2);
+    mensaje += `%0A💰 *Total:* $${total.toFixed(2)}`;
+    return mensaje;
+  }
+
+  whatsappBtn.addEventListener('click', () => {
+    const mensaje = calcularTotal();
+    const numero = "50370092996";
+    const url = `https://wa.me/${numero}?text=${mensaje}`;
+    window.open(url, "_blank");
+  });
+
+  calcularTotal();
+</script>
 </body>
 </html>
-
-
-
