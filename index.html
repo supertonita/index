@@ -234,22 +234,102 @@
   <div class="canastas-prediseñadas">
     <h3 style="color:#2E8B57;">Canastas Prediseñadas</h3>
 
-    <div class="canasta">
-      <input type="number" class="cantidad" min="1" value="1" disabled>
-      <label><input type="radio" name="canasta" value="12.00" data-nombre="Canasta Básica"> Canasta Básica (<span class="precio">$12.00</span>)</label>
-      <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida, Spaguethi, leche, laky sobre </p>
-    </div>
+   <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canastas Navideñas</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #fdfdfd;
+    padding: 20px;
+  }
+  .canasta {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    background: #ffffff;
+  }
+  .canasta label {
+    font-weight: bold;
+  }
+  .precio {
+    color: #b12704;
+  }
+  .cantidad-container {
+    margin-top: 8px;
+  }
+  .cantidad {
+    width: 60px;
+    padding: 4px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
 
-    <div class="canasta">
-      <input type="number" class="cantidad" min="1" value="1" disabled>
-      <label><input type="radio" name="canasta" value="15.00" data-nombre="Canasta Familiar"> Canasta Familiar (<span class="precio">$15.00</span>)</label>
-      <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida</p>
-    </div>
+<h2>Canastas Navideñas 🎄</h2>
 
-    <div class="canasta">
-      <input type="number" class="cantidad" min="1" value="1" disabled>
-      <label><input type="radio" name="canasta" value="20.00" data-nombre="Canasta Premium"> Canasta Premium (<span class="precio">$20.00</span>)</label>
-      <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida</p>
+<!-- Canasta Básica -->
+<div class="canasta">
+  <label>
+    <input type="radio" name="canasta" value="10.00" data-nombre="Canasta Básica">
+    Canasta Básica (<span class="precio">$10.00</span>)
+  </label>
+  <p><em>Incluye:</em> Arroz, Frijoles, Azúcar, Sal, Avena</p>
+  <div class="cantidad-container">
+    <label>Cantidad:</label>
+    <input type="number" class="cantidad" min="1" value="1" disabled>
+  </div>
+</div>
+
+<!-- Canasta Premium -->
+<div class="canasta">
+  <label>
+    <input type="radio" name="canasta" value="20.00" data-nombre="Canasta Premium">
+    Canasta Premium (<span class="precio">$20.00</span>)
+  </label>
+  <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida</p>
+  <div class="cantidad-container">
+    <label>Cantidad:</label>
+    <input type="number" class="cantidad" min="1" value="1" disabled>
+  </div>
+</div>
+
+<!-- Canasta Familiar -->
+<div class="canasta">
+  <label>
+    <input type="radio" name="canasta" value="30.00" data-nombre="Canasta Familiar">
+    Canasta Familiar (<span class="precio">$30.00</span>)
+  </label>
+  <p><em>Incluye:</em> Arroz, Azúcar, Avena, Café, Galletas, Bebidas, Aceite</p>
+  <div class="cantidad-container">
+    <label>Cantidad:</label>
+    <input type="number" class="cantidad" min="1" value="1" disabled>
+  </div>
+</div>
+
+<script>
+  // Activar el campo de cantidad solo en la canasta seleccionada
+  const radios = document.querySelectorAll('input[name="canasta"]');
+  const cantidades = document.querySelectorAll('.cantidad');
+
+  radios.forEach((radio, index) => {
+    radio.addEventListener('change', () => {
+      cantidades.forEach((input, i) => {
+        input.disabled = (i !== index);
+        if (i !== index) input.value = 1; // reinicia las no seleccionadas
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
+
     </div>
   </div>
 </div>
@@ -349,5 +429,6 @@
   </script>
 </body>
 </html>
+
 
 
