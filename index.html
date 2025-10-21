@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Súper Toñita - Canastas</title>
+  <style>
+    body { font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif; background: #dbd6d6c4; color: #333; margin: 20px; }
+    h1 { color: #2E8B57; text-align: center; }
+    h2 { text-align: center; color: #2E8B57; }
+    .container { max-width: 900px; margin: auto; }
+
+    .selector-flex {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .paila, .canastas-prediseñadas {
+      flex: 1 1 300px;
+    }
+
+    label { display: block; margin-bottom: 8px; }
+
+    .canasta {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+
+    .canasta label {
+      font-weight: bold;
+    }
+
+    button {
+      background: #ffae00;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    #total {
+      font-size: 1.3em;
+      margin: 15px 0;
+      text-align: center;
+      color: #2E8B57;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .cantidad { width: 55px; text-align: center; }
+    .precio { color: #2E8B57; font-weight: bold; }
+
+    /* Mejorar separación visual */
+    .productos h3 {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MINI SUPER TOÑITA</h1>
+    <h2>Arma tu canasta para esa persona especial.</h2>
+<style>
+  .paila {
+    flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .productos {
+    margin-top: 10px;
+    width: 100%;
+  }
+</style>
+
+<div class="selector-flex">
+  <!-- Tamaño de paila -->
+  <div class="paila">
+    <h3 style="color:#2E8B57;">Tamaño de paila</h3>
+    <label><input type="radio" name="paila" value="1.00" checked> Paila Pequeña (<span class="precio">$1.00</span>)</label>
+    <label><input type="radio" name="paila" value="1.25"> Paila Mediana (<span class="precio">$1.25</span>)</label>
+    <label><input type="radio" name="paila" value="1.75"> Paila Grande (<span class="precio">$1.75</span>)</label>
+
+    <!-- Productos básicos dentro de la misma columna -->
+    <div class="productos">
+      <h3 style="color:#2E8B57;">Productos básicos</h3>
+
+      <!-- Productos -->
+  <div class="productos">
+
+    <h3 style="color:#2E8B57;">Productos básicos</h3>
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.25" data-nombre="Arroz 2lb">
+      Arroz 2lb (<span class="precio">$1.25</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.75" data-nombre="Azúcar 5lb">
+      Azúcar 5lb (<span class="precio">$1.75</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="2.10" data-nombre="Aceite Mazola">
+      Aceite Mazola (<span class="precio">$2.10</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="2.45" data-nombre="Café Tradicional">
+      Café Tradicional (<span class="precio">$2.45</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.75" data-nombre="Pan Tostado">
+      Pan Tostado (<span class="precio">$1.75</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="0.25" data-nombre="Sal 1lb">
+      Sal 1lb (<span class="precio">$0.25</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.00" data-nombre="Maicena Hacienda">
+      Maicena Hacienda (<span class="precio">$1.00</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="0.40" data-nombre="Sopas Laky sobre pollo">
+      Sopas Laky sobre pollo (<span class="precio">$0.40</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="0.40" data-nombre="Sopas Laky sobre camaron">
+      Sopas Laky sobre camaron (<span class="precio">$0.40</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="0.75" data-nombre="Sopas Laky vaso pollo">
+      Sopas Laky vaso pollo (<span class="precio">$0.75</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="0.75" data-nombre="Sopas Laky vaso camaron">
+      Sopas Laky vaso camaron (<span class="precio">$0.75</span>)
+    </label>
+
+    <!-- Galletas -->
+    <h3 style="color:#2E8B57;">Galletas</h3>
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.25" data-nombre="Galletas Diana">
+      Galletas Chiky (<span class="precio">$1.25</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.25" data-nombre="Galletas Club Social">
+      Galletas Club Social (<span class="precio">$1.25</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.75" data-nombre="pan tostado">
+      pan tostado (<span class="precio">$1.75</span>)
+    </label>
+
+    <!-- Bebidas -->
+    <h3 style="color:#2E8B57;">Bebidas</h3>
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.25" data-nombre="Coca Cola 2.5">
+      Coca Cola 2.5 (<span class="precio">$2.25</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.75" data-nombre="Fresco Del Valle 2L">
+      Fresco Del Valle 2l (<span class="precio">$1.75</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.75" data-nombre="Salva Cola 3L">
+      Salva Cola 3L (<span class="precio">$1.75</span>)
+    </label>
+
+    <!-- Churros y Snacks -->
+    <h3 style="color:#2E8B57;">Churros y Snacks</h3>
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.25" data-nombre="Churros Diana">
+      Churros Diana (<span class="precio">$1.25</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.50" data-nombre="Snack Yummi mix">
+      Snack Yummi mix (<span class="precio">$1.50</span>)
+    </label>
+
+    <label class="item">
+      <input type="number" class="cantidad" min="1" value="1" disabled>
+      <input type="checkbox" class="producto" value="1.25" data-nombre="Papas Lays pequeñas">
+      Papas Lays pequeñas (<span class="precio">$1.25</span>)
+    </label>
+      <!-- Aquí tu lista completa -->
+    </div>
+  </div>
+
+  <!-- Canastas prediseñadas -->
+  <div class="canastas-prediseñadas">
+    <h3 style="color:#2E8B57;">Canastas Prediseñadas</h3>
+
+    <div class="canasta">
+      <label><input type="radio" name="canasta" value="12.00" data-nombre="Canasta Básica"> Canasta Básica (<span class="precio">$12.00</span>)</label>
+      <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida, </p>
+    </div>
+
+    <div class="canasta">
+      <label><input type="radio" name="canasta" value="15.00" data-nombre="Canasta Familiar"> Canasta Familiar (<span class="precio">$15.00</span>)</label>
+      <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida</p>
+    </div>
+
+    <div class="canasta">
+      <label><input type="radio" name="canasta" value="20.00" data-nombre="Canasta Premium"> Canasta Premium (<span class="precio">$20.00</span>)</label>
+      <p><em>Incluye:</em> Arroz, Azúcar, Sal, Avena, Aceite, Bebida</p>
+    </div>
+  </div>
+</div>
+
+
+    
+     
+    </div>
+
+    <div id="total">Total: $0.00</div>
+    <div style="text-align:center;">
+      <button id="whatsapp">Enviar pedido por WhatsApp</button>
+    </div>
+  </div>
+
+  <script>
+    const pailas = document.getElementsByName('paila');
+    const productos = document.querySelectorAll('.producto');
+    const cantidades = document.querySelectorAll('.cantidad');
+    const canastas = document.getElementsByName('canasta');
+    const totalDiv = document.getElementById('total');
+    const whatsappBtn = document.getElementById('whatsapp');
+
+   
+    productos.forEach((checkbox, index) => {
+      const cantidad = cantidades[index];
+      checkbox.addEventListener('change', () => {
+        cantidad.disabled = !checkbox.checked;
+        if (!checkbox.checked) cantidad.value = 1;
+        calcularTotal();
+      });
+      cantidad.addEventListener('input', calcularTotal);
+    });
+
+    // Interacción entre pailas y canastas
+    pailas.forEach(p => {
+      p.addEventListener('change', () => {
+        // Desmarcar canastas si se selecciona paila
+        canastas.forEach(c => c.checked = false);
+        calcularTotal();
+      });
+    });
+
+    canastas.forEach(c => {
+      c.addEventListener('change', () => {
+        // Desmarcar pailas si se selecciona una canasta
+        pailas.forEach(p => p.checked = false);
+        calcularTotal();
+      });
+    });
+
+    function calcularTotal() {
+      let total = 0;
+      let mensaje = "🛒 *_Hola Mini Super Toñita, quiero compartir mi pedido:_*%0A";
+
+      // Paila seleccionada
+      for (let p of pailas) {
+        if (p.checked) {
+          total += parseFloat(p.value);
+          mensaje += `- ${p.parentElement.textContent.trim()}%0A`;
+        }
+      }
+
+      // Canasta seleccionada
+      for (let c of canastas) {
+        if (c.checked) {
+          const precio = parseFloat(c.value);
+          const nombre = c.dataset.nombre;
+          total += precio;
+          mensaje += `- ${nombre} ($${precio.toFixed(2)})%0A`;
+        }
+      }
+
+      // Productos
+      productos.forEach((prod, i) => {
+        if (prod.checked) {
+          const cantidad = Math.max(1, parseInt(cantidades[i].value));
+          const precio = parseFloat(prod.value);
+          total += precio * cantidad;
+          mensaje += `- ${cantidad} x ${prod.dataset.nombre} ($${(precio * cantidad).toFixed(2)})%0A`;
+        }
+      });
+
+      totalDiv.textContent = "Total: $" + total.toFixed(2);
+      mensaje += `%0A💰 *Total:* $${total.toFixed(2)}`;
+      return mensaje;
+    }
+
+    whatsappBtn.addEventListener('click', () => {
+      const mensaje = calcularTotal();
+      const numero = "50370092996";
+      const url = `https://wa.me/${numero}?text=${mensaje}`;
+      window.open(url, "_blank");
+    });
+
+    calcularTotal();
+  </script>
+</body>
+</html>
